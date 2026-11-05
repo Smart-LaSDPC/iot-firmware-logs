@@ -46,21 +46,23 @@ void setup() {
 }
 ```
 
-Depois, gere logs de qualquer task:
+Depois, gere logs de qualquer task com as macros `ESP_LOGx` da ESP-IDF. **Esta é a forma recomendada:** não exige nenhum `#include` da biblioteca, e tudo o que usa `ESP_LOGx` passa pelo logger e sai no formato acima.
 
 ```cpp
 static constexpr const char* LogTag = "Sensor";
 
-DEVICE_LOGI(LogTag, "Temperature: %.2f", temperature);
+ESP_LOGI(LogTag, "Temperature: %.2f", temperature);
 ```
 
-| Macro | Nível | `LOG_LOCAL_LEVEL` mínimo | Quando usar |
-|---|---|---|---|
-| `DEVICE_LOGE` | Error | 1 | A operação falhou e o efeito se perdeu |
-| `DEVICE_LOGW` | Warn | 2 | Situação inesperada, com recuperação automática |
-| `DEVICE_LOGI` | Info | 3 | Operação normal |
-| `DEVICE_LOGD` | Debug | 4 | Depuração |
-| `DEVICE_LOGV` | Verbose | 5 | Detalhamento máximo |
+| ESP-IDF | Biblioteca | Nível | `LOG_LOCAL_LEVEL` mínimo | Quando usar |
+|---|---|---|---|---|
+| `ESP_LOGE` | `DEVICE_LOGE` | Error | 1 | A operação falhou e o efeito se perdeu |
+| `ESP_LOGW` | `DEVICE_LOGW` | Warn | 2 | Situação inesperada, com recuperação automática |
+| `ESP_LOGI` | `DEVICE_LOGI` | Info | 3 | Operação normal |
+| `ESP_LOGD` | `DEVICE_LOGD` | Debug | 4 | Depuração |
+| `ESP_LOGV` | `DEVICE_LOGV` | Verbose | 5 | Detalhamento máximo |
+
+As duas colunas de macros são equivalentes, e `log_x` também funciona. Não nomeie uma variável como `TAG`, pois ele é uma macro das `build_flags`.
 
 Ajuste o nível de uma tag depois do `"*"`, que descarta os níveis definidos antes:
 
@@ -73,8 +75,6 @@ Para usar outra serial, passe-a no construtor e inicie-a antes de `begin()`:
 ```cpp
 static DeviceLogger deviceLogger(16, 3, false, Serial2);
 ```
-
-`ESP_LOGx` e `log_x` funcionam da mesma forma. Não nomeie uma variável como `TAG`, pois ele é uma macro das `build_flags`.
 
 ## 🏷️ Handles por tag
 
