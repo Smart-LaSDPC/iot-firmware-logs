@@ -102,16 +102,17 @@ Cada exemplo é um único `.cpp` em `examples/`:
 | `tag_handle` | Mensagens de uma tag enviadas a uma função |
 | `custom_serial` | Saída em outra serial |
 
-Para compilar um exemplo, rode na raiz da biblioteca:
+## 📖 Documentação
+
+Para gerar as páginas da biblioteca com o Doxygen, rode na raiz dela:
 
 ```bash
-pio ci examples/basic --lib . --board esp32dev \
-  -O "framework=arduino" \
-  -O "build_unflags=-std=gnu++11" \
-  -O "build_flags=-include $PWD/include/device_log_format.h -D USE_ESP_IDF_LOG -D CORE_DEBUG_LEVEL=3 -D LOG_LOCAL_LEVEL=3 -D TAG=\\\"ARDUINO\\\" -std=gnu++17"
+sudo apt install doxygen
+doxygen Doxyfile
+xdg-open doxygen/html/index.html
 ```
 
-Em um firmware com as `build_flags` da seção de instalação, basta usar o exemplo como `src/main.cpp`.
+As páginas ficam em `doxygen/html`, pasta ignorada pelo git.
 
 ## ⚠️ Limitações
 
