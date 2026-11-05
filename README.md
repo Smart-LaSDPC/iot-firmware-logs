@@ -91,6 +91,28 @@ deviceLogger.begin();
 
 O handle roda na task de logs, então não deve bloquear nem gerar logs com a própria tag. Se retornar `false`, a mensagem se perde e um erro é escrito na serial.
 
+## 📚 Exemplos
+
+Cada exemplo é um único `.cpp` em `examples/`:
+
+| Exemplo | O que mostra |
+|---|---|
+| `basic` | Início do logger, níveis e filtro por tag |
+| `multi_task` | Várias tasks gerando logs ao mesmo tempo |
+| `tag_handle` | Mensagens de uma tag enviadas a uma função |
+| `custom_serial` | Saída em outra serial |
+
+Para compilar um exemplo, rode na raiz da biblioteca:
+
+```bash
+pio ci examples/basic --lib . --board esp32dev \
+  -O "framework=arduino" \
+  -O "build_unflags=-std=gnu++11" \
+  -O "build_flags=-include $PWD/include/device_log_format.h -D USE_ESP_IDF_LOG -D CORE_DEBUG_LEVEL=3 -D LOG_LOCAL_LEVEL=3 -D TAG=\\\"ARDUINO\\\" -std=gnu++17"
+```
+
+Em um firmware com as `build_flags` da seção de instalação, basta usar o exemplo como `src/main.cpp`.
+
 ## ⚠️ Limitações
 
 - **Tamanho:** cada linha tem até 127 caracteres, com o prefixo, e o excesso é truncado.
