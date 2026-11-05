@@ -5,7 +5,7 @@
  * @brief Formato dos logs: [timestamp] [level] [TAG] [arquivo:linha]: text
  *
  * Injetado em todo arquivo compilado pelo -include das build_flags, sem
- * precisar de #include. Bibliotecas pré-compiladas mantêm o formato padrão.
+ * precisar de \#include. Bibliotecas pré-compiladas mantêm o formato padrão.
  */
 #ifndef __ASSEMBLER__
     #include <esp_log.h>
