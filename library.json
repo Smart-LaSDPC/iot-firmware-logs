@@ -1,0 +1,40 @@
+{
+  "name": "iot-firmware-logs",
+  "version": "1.0.0",
+  "headers": ["LoRa_Flags.h", "LoRa_Module.h", "LoRa_Packet.h"],
+  "build": { 
+    "srcDir": "src"
+  },
+  "authors":[
+    {
+      "name": "XandGVaz",
+      "url": "https://github.com/XandGVaz"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TOPUS-USP/lora-module-library"
+  },
+  "dependencies": [
+    { 
+      "name": "LoRa", 
+      "version": "*",
+      "url": "https://github.com/sandeepmistry/arduino-LoRa" 
+    },
+    { 
+      "name": "EBYTE", 
+      "version": "*",
+      "url": "https://github.com/KrisKasprzak/EBYTE" 
+    },
+    { 
+      "name": "EByte LoRa E220 library", 
+      "version": "*",
+      "url": "https://github.com/xreef/EByte_LoRa_E220_Series_Library"
+    },
+    { 
+      "name": "ArduinoJson", 
+      "version": "*",
+      "url": "https://github.com/bblanchon/ArduinoJson"
+    }
+  ]
+}
