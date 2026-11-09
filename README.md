@@ -7,6 +7,21 @@ Logs assíncronos para firmwares ESP32 com Arduino e FreeRTOS. As tasks geram lo
 [10432] [I] [Sensor] [task_sensor.cpp:66]: Sensor list received with 3 types
 ```
 
+## 🔄 Funcionamento
+
+```mermaid
+flowchart LR
+    T["Tasks<br/>ESP_LOGx"] --> H["logHook<br/>formata a linha"]
+    H --> Q[("Fila de logs")]
+    H -. "fila de logs cheia" .-> D["Descartada"]
+    Q --> L["Task Logger"]
+    L --> C{"Tag tem handle?"}
+    C -- não --> S["Serial"]
+    C -- sim --> F["Handle da tag"]
+```
+
+As tasks só formatam a mensagem e a colocam na fila, sem esperar. Só a task `Logger` escreve na serial, então as linhas de tasks diferentes não se misturam.
+
 ## ⚙️ Instalação
 
 Adicione a biblioteca em `lib/`:
