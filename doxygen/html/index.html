@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>iot-firmware-logs: 📝 iot-firmware-logs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">iot-firmware-logs
+   </div>
+   <div id="projectbrief">Logs assíncronos para firmwares ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">📝 iot-firmware-logs </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a> Logs assíncronos para firmwares ESP32 com Arduino e FreeRTOS. As tasks geram logs pela biblioteca da ESP-IDF, um hook coloca as mensagens em uma fila, e uma única task escreve na serial.</p>
+<div class="fragment"><div class="line">[timestamp] [level] [TAG] [arquivo:linha]: text</div>
+<div class="line">[10432] [I] [Sensor] [task_sensor.cpp:66]: Sensor list received with 3 types</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1"></a>
+🔄 Funcionamento</h1>
+<div class="fragment"><div class="line">flowchart LR</div>
+<div class="line">    T[&quot;Tasks&lt;br/&gt;ESP_LOGx&quot;] --&gt; H[&quot;logHook&lt;br/&gt;formata a linha&quot;]</div>
+<div class="line">    H --&gt; Q[(&quot;Fila de logs&quot;)]</div>
+<div class="line">    H -. &quot;fila de logs cheia&quot; .-&gt; D[&quot;Descartada&quot;]</div>
+<div class="line">    Q --&gt; L[&quot;Task Logger&quot;]</div>
+<div class="line">    L --&gt; C{&quot;Tag tem handle?&quot;}</div>
+<div class="line">    C -- não --&gt; S[&quot;Serial&quot;]</div>
+<div class="line">    C -- sim --&gt; F[&quot;Handle da tag&quot;]</div>
+</div><!-- fragment --><p>As tasks só formatam a mensagem e a colocam na fila, sem esperar. Só a task <code>Logger</code> escreve na serial, então as linhas de tasks diferentes não se misturam.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+⚙️ Instalação</h1>
+<p>Adicione a biblioteca em <code>lib/</code>:</p>
+<div class="fragment"><div class="line">git submodule add https://github.com/Smart-LaSDPC/iot-firmware-logs.git lib/iot-firmware-logs</div>
+</div><!-- fragment --><p>Configure o <code>platformio.ini</code>:</p>
+<div class="fragment"><div class="line">build_unflags = -std=gnu++11</div>
+<div class="line">build_flags =</div>
+<div class="line">    -include $PROJECT_DIR/lib/iot-firmware-logs/include/device_log_format.h</div>
+<div class="line">    -D USE_ESP_IDF_LOG</div>
+<div class="line">    -D CORE_DEBUG_LEVEL=3</div>
+<div class="line">    -D LOG_LOCAL_LEVEL=3</div>
+<div class="line">    -D TAG=\&quot;ARDUINO\&quot;</div>
+<div class="line">    -std=gnu++17</div>
+</div><!-- fragment --><p>O <code>-include</code> aplica o formato a todo arquivo compilado, sem precisar de <code>#include</code>.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+🚀 Uso</h1>
+<p>Inicie o logger logo após a serial:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="device__logger_8h.html">device_logger.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classDeviceLogger.html">DeviceLogger</a> deviceLogger(16);   <span class="comment">// capacidade da fila, em mensagens</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> setup() {</div>
+<div class="line">    Serial.begin(115200);</div>
+<div class="line">    deviceLogger.setTagLevel(<span class="stringliteral">&quot;*&quot;</span>, ESP_LOG_INFO);   <span class="comment">// sem isso, só Error aparece</span></div>
+<div class="line">    deviceLogger.begin();                          <span class="comment">// registra o próprio erro, se falhar</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassDeviceLogger_html"><div class="ttname"><a href="classDeviceLogger.html">DeviceLogger</a></div><div class="ttdoc">Recebe os logs da ESP-IDF por um hook e os imprime em uma task dedicada, para que só ela use a serial...</div><div class="ttdef"><b>Definição</b> device_logger.h:27</div></div>
+<div class="ttc" id="adevice__logger_8h_html"><div class="ttname"><a href="device__logger_8h.html">device_logger.h</a></div><div class="ttdoc">Logger assíncrono: as tasks enfileiram as mensagens, e uma única task escreve na saída serial.</div></div>
+</div><!-- fragment --><p>Depois, gere logs de qualquer task com as macros <code>ESP_LOGx</code> da ESP-IDF. <b>Esta é a forma recomendada:</b> não exige nenhum <code>#include</code> da biblioteca, e tudo o que usa <code>ESP_LOGx</code> passa pelo logger e sai no formato acima.</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* LogTag = <span class="stringliteral">&quot;Sensor&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">ESP_LOGI(LogTag, <span class="stringliteral">&quot;Temperature: %.2f&quot;</span>, temperature);</div>
+</div><!-- fragment --><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">ESP-IDF   </th><th class="markdownTableHeadNone">Biblioteca   </th><th class="markdownTableHeadNone">Nível   </th><th class="markdownTableHeadNone"><code>LOG_LOCAL_LEVEL</code> mínimo   </th><th class="markdownTableHeadNone">Quando usar    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>ESP_LOGE</code>   </td><td class="markdownTableBodyNone"><code>DEVICE_LOGE</code>   </td><td class="markdownTableBodyNone">Error   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">A operação falhou e o efeito se perdeu    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>ESP_LOGW</code>   </td><td class="markdownTableBodyNone"><code>DEVICE_LOGW</code>   </td><td class="markdownTableBodyNone">Warn   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">Situação inesperada, com recuperação automática    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>ESP_LOGI</code>   </td><td class="markdownTableBodyNone"><code>DEVICE_LOGI</code>   </td><td class="markdownTableBodyNone">Info   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">Operação normal    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>ESP_LOGD</code>   </td><td class="markdownTableBodyNone"><code>DEVICE_LOGD</code>   </td><td class="markdownTableBodyNone">Debug   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">Depuração    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>ESP_LOGV</code>   </td><td class="markdownTableBodyNone"><code>DEVICE_LOGV</code>   </td><td class="markdownTableBodyNone">Verbose   </td><td class="markdownTableBodyNone">5   </td><td class="markdownTableBodyNone">Detalhamento máximo   </td></tr>
+</table>
+<p>As duas colunas de macros são equivalentes, e <code>log_x</code> também funciona. Não nomeie uma variável como <code>TAG</code>, pois ele é uma macro das <code>build_flags</code>.</p>
+<p>Ajuste o nível de uma tag depois do <code>"*"</code>, que descarta os níveis definidos antes:</p>
+<div class="fragment"><div class="line">deviceLogger.setTagLevel(<span class="stringliteral">&quot;Sensor&quot;</span>, ESP_LOG_WARN);</div>
+</div><!-- fragment --><p>Para usar outra serial, passe-a no construtor e inicie-a antes de <code>begin()</code>:</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classDeviceLogger.html">DeviceLogger</a> deviceLogger(16, 3, <span class="keyword">false</span>, Serial2);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+🏷️ Handles por tag</h1>
+<p>Um handle recebe as mensagens de uma tag no lugar da serial. Permita o recurso no construtor e registre os handles antes de <code>begin()</code>:</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classDeviceLogger.html">DeviceLogger</a> deviceLogger(16, 3, <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line">deviceLogger.attatchHandleFunctionToTag(<span class="stringliteral">&quot;Sensor&quot;</span>, [](std::string tag, <a class="code hl_struct" href="structDeviceLogger_1_1LogMessage.html">DeviceLogger::LogMessage</a> message) {</div>
+<div class="line">    <span class="keywordflow">return</span> publishLog(message.<a class="code hl_variable" href="structDeviceLogger_1_1LogMessage.html#a79db7c7650916af982f6c01fef5569a2">text</a>);</div>
+<div class="line">});</div>
+<div class="line">deviceLogger.begin();</div>
+<div class="ttc" id="astructDeviceLogger_1_1LogMessage_html"><div class="ttname"><a href="structDeviceLogger_1_1LogMessage.html">DeviceLogger::LogMessage</a></div><div class="ttdoc">Item da fila: uma linha de log já formatada.</div><div class="ttdef"><b>Definição</b> device_logger.h:56</div></div>
+<div class="ttc" id="astructDeviceLogger_1_1LogMessage_html_a79db7c7650916af982f6c01fef5569a2"><div class="ttname"><a href="structDeviceLogger_1_1LogMessage.html#a79db7c7650916af982f6c01fef5569a2">DeviceLogger::LogMessage::text</a></div><div class="ttdeci">char text[LogMessageMaxLenght]</div><div class="ttdoc">Texto da mensagem.</div><div class="ttdef"><b>Definição</b> device_logger.h:58</div></div>
+</div><!-- fragment --><p>O handle roda na task de logs, então não deve bloquear nem gerar logs com a própria tag. Se retornar <code>false</code>, a mensagem se perde e um erro é escrito na serial.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+📚 Exemplos</h1>
+<p>Cada exemplo é um único <code>.cpp</code> em <code>examples/</code>:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Exemplo   </th><th class="markdownTableHeadNone">O que mostra    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>basic</code>   </td><td class="markdownTableBodyNone">Início do logger, níveis e filtro por tag    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>multi_task</code>   </td><td class="markdownTableBodyNone">Várias tasks gerando logs ao mesmo tempo    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>tag_handle</code>   </td><td class="markdownTableBodyNone">Mensagens de uma tag enviadas a uma função    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>custom_serial</code>   </td><td class="markdownTableBodyNone">Saída em outra serial   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md6"></a>
+📖 Documentação</h1>
+<p>A documentação Doxygen está em <a href="https://smart-lasdpc.github.io/iot-firmware-logs/">https://smart-lasdpc.github.io/iot-firmware-logs/</a>. A cada push na <code>main</code>, o workflow <code>Doxygen</code> gera as páginas de novo e publica.</p>
+<p>Para gerar as páginas localmente, rode na raiz da biblioteca:</p>
+<div class="fragment"><div class="line">sudo apt install doxygen</div>
+<div class="line">doxygen Doxyfile</div>
+<div class="line">xdg-open doxygen/html/index.html</div>
+</div><!-- fragment --><p>As páginas ficam em <code>doxygen/html</code>, que é versionada. Gere de novo e faça commit sempre que mudar o README ou os comentários do código.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+⚠️ Limitações</h1>
+<ul>
+<li><b>Tamanho:</b> cada linha tem até 127 caracteres, com o prefixo, e o excesso é truncado.</li>
+<li><b>Fila cheia:</b> a mensagem é descartada. Um aviso sai a cada <code>droppedLogsToWarn</code> descartes.</li>
+<li><b>Deep sleep e crash:</b> o que ainda está na fila se perde.</li>
+<li><b>Instância única:</b> um segundo <code>begin()</code> retorna <code>false</code>.</li>
+<li><b>Fora do logger:</b> <code>Serial.print*</code>, <code>printf</code>, <code>ets_printf</code> e <code>ESP_EARLY_LOGx</code>.</li>
+<li><b>ISR:</b> não gere logs em interrupções.</li>
+<li><b>Bibliotecas pré-compiladas:</b> passam pela fila, mas mantêm o formato padrão da ESP-IDF.</li>
+<li><b>Recompilação:</b> ao alterar <code><a class="el" href="device__log__format_8h.html" title="Formato dos logs: [timestamp] [level] [TAG] [arquivo:linha]: text.">device_log_format.h</a></code>, rode <code>pio run -t clean</code>. </li>
+</ul>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

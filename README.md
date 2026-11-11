@@ -119,7 +119,9 @@ Cada exemplo é um único `.cpp` em `examples/`:
 
 ## 📖 Documentação
 
-Para gerar as páginas da biblioteca com o Doxygen, rode na raiz dela:
+A documentação Doxygen está em <https://smart-lasdpc.github.io/iot-firmware-logs/>. A cada push na `main`, o workflow `Doxygen` gera as páginas de novo e publica.
+
+Para gerar as páginas localmente, rode na raiz da biblioteca:
 
 ```bash
 sudo apt install doxygen
@@ -127,7 +129,7 @@ doxygen Doxyfile
 xdg-open doxygen/html/index.html
 ```
 
-As páginas ficam em `doxygen/html`, pasta ignorada pelo git.
+As páginas ficam em `doxygen/html`, que é versionada. Gere de novo e faça commit sempre que mudar o README ou os comentários do código.
 
 ## ⚠️ Limitações
 
