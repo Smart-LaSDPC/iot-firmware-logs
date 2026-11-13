@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>iot-firmware-logs: Referência da Classe DeviceLogger</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">iot-firmware-logs
+   </div>
+   <div id="projectbrief">Logs assíncronos para firmwares ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Componentes</a> &#124;
+<a href="#pub-types">Tipos Públicos</a> &#124;
+<a href="#pub-methods">Membros Públicos</a> &#124;
+<a href="#pub-static-methods">Membros públicos estáticos</a> &#124;
+<a href="classDeviceLogger-members.html">Lista de todos os Membros</a>  </div>
+  <div class="headertitle"><div class="title">Referência da Classe DeviceLogger</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Recebe os logs da ESP-IDF por um hook e os imprime em uma task dedicada, para que só ela use a serial.  
+ <a href="classDeviceLogger.html#details">Mais...</a></p>
+
+<p><code>#include &lt;<a class="el" href="device__logger_8h_source.html">device_logger.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDeviceLogger_1_1LogMessage.html">LogMessage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item da fila: uma linha de log já formatada.  <a href="structDeviceLogger_1_1LogMessage.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Tipos Públicos</h2></td></tr>
+<tr class="memitem:a7eb62e5dc4ecf770ed828dc7fa3e27df" id="r_a7eb62e5dc4ecf770ed828dc7fa3e27df"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#a7eb62e5dc4ecf770ed828dc7fa3e27df">LogMessageFromTagHandle</a> = std::function&lt; bool(std::string, <a class="el" href="structDeviceLogger_1_1LogMessage.html">LogMessage</a>)&gt;</td></tr>
+<tr class="memdesc:a7eb62e5dc4ecf770ed828dc7fa3e27df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função chamada para cada mensagem de uma tag, no lugar da impressão na serial.  <br /></td></tr>
+<tr class="separator:a7eb62e5dc4ecf770ed828dc7fa3e27df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Membros Públicos</h2></td></tr>
+<tr class="memitem:a5756ca7e03b176e7b4522a350e88ec8b" id="r_a5756ca7e03b176e7b4522a350e88ec8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#a5756ca7e03b176e7b4522a350e88ec8b">DeviceLogger</a> (int logMessageQueueLenght=4, int droppedLogsToWarn=3, bool allowAttatchLogTagHandles=false, HardwareSerial &amp;serial=Serial)</td></tr>
+<tr class="memdesc:a5756ca7e03b176e7b4522a350e88ec8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define as configurações do logger. A fila e a task só são criadas em <a class="el" href="classDeviceLogger.html#a44872e1833fe80f764d8a370f50fdcc6" title="Cria a fila e a task de logs e instala o hook em esp_log_set_vprintf.">begin()</a>.  <br /></td></tr>
+<tr class="separator:a5756ca7e03b176e7b4522a350e88ec8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44872e1833fe80f764d8a370f50fdcc6" id="r_a44872e1833fe80f764d8a370f50fdcc6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#a44872e1833fe80f764d8a370f50fdcc6">begin</a> ()</td></tr>
+<tr class="memdesc:a44872e1833fe80f764d8a370f50fdcc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria a fila e a task de logs e instala o hook em esp_log_set_vprintf.  <br /></td></tr>
+<tr class="separator:a44872e1833fe80f764d8a370f50fdcc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25df38bb9b191f6dd8a467b7c0e77d8c" id="r_a25df38bb9b191f6dd8a467b7c0e77d8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#a25df38bb9b191f6dd8a467b7c0e77d8c">attatchHandleFunctionToTag</a> (std::string tag, <a class="el" href="classDeviceLogger.html#a7eb62e5dc4ecf770ed828dc7fa3e27df">LogMessageFromTagHandle</a> handleFunction)</td></tr>
+<tr class="memdesc:a25df38bb9b191f6dd8a467b7c0e77d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Associa uma função às mensagens de uma tag.  <br /></td></tr>
+<tr class="separator:a25df38bb9b191f6dd8a467b7c0e77d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Membros públicos estáticos</h2></td></tr>
+<tr class="memitem:addb328e6dc7c22802f08be70fc4e89e2" id="r_addb328e6dc7c22802f08be70fc4e89e2"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#addb328e6dc7c22802f08be70fc4e89e2">getTagFromMessage</a> (const <a class="el" href="structDeviceLogger_1_1LogMessage.html">LogMessage</a> &amp;message)</td></tr>
+<tr class="memdesc:addb328e6dc7c22802f08be70fc4e89e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtém a tag do texto de uma mensagem, pois esp_log_write não a repassa ao hook.  <br /></td></tr>
+<tr class="separator:addb328e6dc7c22802f08be70fc4e89e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1f912261600250c64777b0ea890fa03" id="r_ad1f912261600250c64777b0ea890fa03"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#ad1f912261600250c64777b0ea890fa03">setTagLevel</a> (const std::string &amp;tag, int level)</td></tr>
+<tr class="memdesc:ad1f912261600250c64777b0ea890fa03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define em tempo de execução o nível de log de uma tag.  <br /></td></tr>
+<tr class="separator:ad1f912261600250c64777b0ea890fa03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae97dacfb47db7478877739e5cf9beca8" id="r_ae97dacfb47db7478877739e5cf9beca8"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#ae97dacfb47db7478877739e5cf9beca8">logHook</a> (const char *format, va_list arg)</td></tr>
+<tr class="memdesc:ae97dacfb47db7478877739e5cf9beca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formata a mensagem e a coloca na fila, sem bloquear.  <br /></td></tr>
+<tr class="separator:ae97dacfb47db7478877739e5cf9beca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2148b3499aa30dbd0004faa1728e91" id="r_a4c2148b3499aa30dbd0004faa1728e91"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeviceLogger.html#a4c2148b3499aa30dbd0004faa1728e91">vTaskLog</a> (void *pvParameters)</td></tr>
+<tr class="memdesc:a4c2148b3499aa30dbd0004faa1728e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task que retira as mensagens da fila e chama a função associada à tag, se as associações foram permitidas no construtor. As demais mensagens são escritas na serial.  <br /></td></tr>
+<tr class="separator:a4c2148b3499aa30dbd0004faa1728e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Recebe os logs da ESP-IDF por um hook e os imprime em uma task dedicada, para que só ela use a serial. </p>
+<p>O hook da ESP-IDF é global: só uma instância fica ativa, e ela precisa existir até o reset do dispositivo. </p>
+</div><h2 class="groupheader">Documentação das definições de tipos</h2>
+<a id="a7eb62e5dc4ecf770ed828dc7fa3e27df" name="a7eb62e5dc4ecf770ed828dc7fa3e27df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb62e5dc4ecf770ed828dc7fa3e27df">&#9670;&#160;</a></span>LogMessageFromTagHandle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDeviceLogger.html#a7eb62e5dc4ecf770ed828dc7fa3e27df">DeviceLogger::LogMessageFromTagHandle</a> =  std::function&lt;bool(std::string, <a class="el" href="structDeviceLogger_1_1LogMessage.html">LogMessage</a>)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função chamada para cada mensagem de uma tag, no lugar da impressão na serial. </p>
+<p>Roda na task de logs: enquanto ela não retorna, nenhum log é impresso. Por isso não deve bloquear, nem gerar logs com a própria tag, o que a chamaria de novo a cada mensagem.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>Tag da mensagem. </td></tr>
+    <tr><td class="paramname">message</td><td>Mensagem recebida, já formatada. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a mensagem foi tratada; false gera um erro na serial, e a mensagem não é impressa. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Construtores e Destrutores</h2>
+<a id="a5756ca7e03b176e7b4522a350e88ec8b" name="a5756ca7e03b176e7b4522a350e88ec8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5756ca7e03b176e7b4522a350e88ec8b">&#9670;&#160;</a></span>DeviceLogger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DeviceLogger::DeviceLogger </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>logMessageQueueLenght</em> = <code>4</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>droppedLogsToWarn</em> = <code>3</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allowAttatchLogTagHandles</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HardwareSerial &amp;&#160;</td>
+          <td class="paramname"><em>serial</em> = <code>Serial</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define as configurações do logger. A fila e a task só são criadas em <a class="el" href="classDeviceLogger.html#a44872e1833fe80f764d8a370f50fdcc6" title="Cria a fila e a task de logs e instala o hook em esp_log_set_vprintf.">begin()</a>. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logMessageQueueLenght</td><td>Capacidade da fila, em mensagens. </td></tr>
+    <tr><td class="paramname">droppedLogsToWarn</td><td>Quantidade de descartes que gera um aviso. </td></tr>
+    <tr><td class="paramname">allowAttatchLogTagHandles</td><td>Permite associar funções a tags. Se false, a task imprime todas as mensagens, sem procurar por funções associadas. </td></tr>
+    <tr><td class="paramname">serial</td><td>Serial de saída dos logs. O logger não a inicia. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="a25df38bb9b191f6dd8a467b7c0e77d8c" name="a25df38bb9b191f6dd8a467b7c0e77d8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25df38bb9b191f6dd8a467b7c0e77d8c">&#9670;&#160;</a></span>attatchHandleFunctionToTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DeviceLogger::attatchHandleFunctionToTag </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDeviceLogger.html#a7eb62e5dc4ecf770ed828dc7fa3e27df">LogMessageFromTagHandle</a>&#160;</td>
+          <td class="paramname"><em>handleFunction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Associa uma função às mensagens de uma tag. </p>
+<p>Cada tag tem uma função: uma nova associação substitui a anterior. A tag vem do texto da mensagem, então vale para o formato do firmware e para o padrão das bibliotecas pré-compiladas, mas não para mensagens truncadas antes dela.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>Tag a ser tratada, com até 31 caracteres. </td></tr>
+    <tr><td class="paramname">handleFunction</td><td>Função chamada para cada mensagem da tag. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a função foi associada; false se as associações não foram permitidas no construtor, se a função é vazia ou se <a class="el" href="classDeviceLogger.html#a44872e1833fe80f764d8a370f50fdcc6" title="Cria a fila e a task de logs e instala o hook em esp_log_set_vprintf.">begin()</a> já foi chamado, pois a task lê as associações sem sincronização. </dd></dl>
+
+</div>
+</div>
+<a id="a44872e1833fe80f764d8a370f50fdcc6" name="a44872e1833fe80f764d8a370f50fdcc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44872e1833fe80f764d8a370f50fdcc6">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DeviceLogger::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cria a fila e a task de logs e instala o hook em esp_log_set_vprintf. </p>
+<p>Chame depois de iniciar a serial: antes disso, a task não tem por onde escrever.</p>
+<dl class="section return"><dt>Retorna</dt><dd>true se a inicialização foi concluída; false se faltou memória ou se já existe um logger ativo. </dd></dl>
+
+</div>
+</div>
+<a id="addb328e6dc7c22802f08be70fc4e89e2" name="addb328e6dc7c22802f08be70fc4e89e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb328e6dc7c22802f08be70fc4e89e2">&#9670;&#160;</a></span>getTagFromMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DeviceLogger::getTagFromMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structDeviceLogger_1_1LogMessage.html">LogMessage</a> &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtém a tag do texto de uma mensagem, pois esp_log_write não a repassa ao hook. </p>
+<p>Reconhece o formato do firmware e o padrão das bibliotecas pré-compiladas.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Mensagem de log. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Tag da mensagem, com até 31 caracteres, ou string vazia se o texto não tiver tag. </dd></dl>
+
+</div>
+</div>
+<a id="ae97dacfb47db7478877739e5cf9beca8" name="ae97dacfb47db7478877739e5cf9beca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae97dacfb47db7478877739e5cf9beca8">&#9670;&#160;</a></span>logHook()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DeviceLogger::logHook </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Formata a mensagem e a coloca na fila, sem bloquear. </p>
+<p>Recebe as mensagens de esp_log_write, em paralelo, de qualquer task. Por isso deve ser reentrante e não pode gerar logs. Roda na pilha de quem gerou o log. Com a fila cheia, a mensagem é descartada e contada; mensagens maiores que LogMessageMaxLenght são truncadas, mantendo a quebra de linha.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>Formato recebido da ESP-IDF, já com o prefixo da linha. </td></tr>
+    <tr><td class="paramname">arg</td><td>Argumentos do formato, válidos apenas durante a chamada. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Quantidade de caracteres formatados, ou valor negativo em caso de erro. </dd></dl>
+
+</div>
+</div>
+<a id="ad1f912261600250c64777b0ea890fa03" name="ad1f912261600250c64777b0ea890fa03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1f912261600250c64777b0ea890fa03">&#9670;&#160;</a></span>setTagLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DeviceLogger::setTagLevel </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>level</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Define em tempo de execução o nível de log de uma tag. </p>
+<p>Só alcança logs mantidos na compilação: um nível acima de LOG_LOCAL_LEVEL não tem efeito. A tag "*" vale para todas as tags e descarta os níveis definidos antes, por isso deve vir primeiro.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>Tag a ser configurada, ou "*" para todas. </td></tr>
+    <tr><td class="paramname">level</td><td>Nível máximo de log da tag, como esp_log_level_t ou como número: 0 nenhum, 1 Error, 2 Warn, 3 Info, 4 Debug e 5 Verbose. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4c2148b3499aa30dbd0004faa1728e91" name="a4c2148b3499aa30dbd0004faa1728e91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c2148b3499aa30dbd0004faa1728e91">&#9670;&#160;</a></span>vTaskLog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DeviceLogger::vTaskLog </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvParameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Task que retira as mensagens da fila e chama a função associada à tag, se as associações foram permitidas no construtor. As demais mensagens são escritas na serial. </p>
+<p>Quando os descartes atingem droppedLogsToWarn, escreve o aviso direto na serial, pois a fila pode estar cheia.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pvParameters</td><td>Não utilizado: a task usa a instância ativa. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>A documentação para essa classe foi gerada a partir dos seguintes arquivos:<ul>
+<li>include/<a class="el" href="device__logger_8h_source.html">device_logger.h</a></li>
+<li>src/<b>device_logger.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
